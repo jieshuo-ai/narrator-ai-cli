@@ -87,12 +87,26 @@ if ! echo "$PATH" | tr ':' '\n' | grep -qx "$BIN_DIR"; then
     export PATH="$BIN_DIR:$PATH"
 fi
 
+# Install Claude Code skill (global)
+SKILL_SRC="$INSTALL_DIR/.claude/skills/narrator-ai/SKILL.md"
+SKILL_DST="$HOME/.claude/skills/narrator-ai/SKILL.md"
+if [ -f "$SKILL_SRC" ]; then
+    mkdir -p "$(dirname "$SKILL_DST")"
+    cp -f "$SKILL_SRC" "$SKILL_DST"
+    ok "Claude Code skill installed at $SKILL_DST"
+else
+    info "Skill file not found, skipping Claude Code integration."
+fi
+
 ok "narrator-ai-cli installed successfully!"
 echo ""
 info "Quick start:"
 echo "  narrator-ai-cli config init"
 echo "  narrator-ai-cli --help"
 echo ""
+if [ -f "$SKILL_DST" ]; then
+    info "Claude Code skill is available globally. Claude can now use narrator-ai-cli in any project."
+fi
 if ! echo "$PATH" | tr ':' '\n' | grep -qx "$BIN_DIR"; then
     info "Restart your shell or run: export PATH=\"$BIN_DIR:\$PATH\""
 fi
