@@ -230,16 +230,19 @@ narrator-ai-cli task search-movie "<name>" --json        # movie info for fast-w
 - `10010` = task not found
 - `60000` = retryable error (retry the operation)
 
-## Pre-built Narration Templates
+## Pre-built Narration Templates (90+ templates)
 
-Full documentation: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+90+ templates across 12 genres. Always use the CLI to get the full list:
 
-Quick reference (use `narrator-ai-cli task narration-styles --json` for full list):
-- Action: `narrator-20250916152104-DYsban`
-- Suspense: `narrator-20250916152053-nBcHXC`
-- Inspirational: `narrator-20250918141539-NnpZlD`
-- Comedy: `narrator-20250918183013-ktylCA`
-- Disaster: `narrator-20250919170450-ClVcgT`
-- Thriller: `narrator-20250915161121-kwwIHs`
-- Fantasy: `narrator-20250915154420-YVDLiW`
-- Family: `narrator-20250915162937-zUrCtQ`
+```bash
+# List all templates
+narrator-ai-cli task narration-styles --json
+
+# Filter by genre
+narrator-ai-cli task narration-styles --genre 情感人生 --json
+narrator-ai-cli task narration-styles --genre 烧脑悬疑 --json
+```
+
+Available genres: 热血动作, 烧脑悬疑, 励志成长, 爆笑喜剧, 灾难求生, 悬疑惊悚, 惊悚恐怖, 东方奇谈, 家庭伦理, 情感人生, 奇幻科幻, 传奇人物
+
+View template previews and effects: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc

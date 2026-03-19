@@ -463,21 +463,113 @@ def search_movie(
 
 
 NARRATION_TEMPLATES = [
-    {"name": "热血动作-困兽之斗解说", "id": "narrator-20250916152104-DYsban", "genre": "Action"},
-    {"name": "烧脑悬疑-栽赃陷害解说", "id": "narrator-20250916152053-nBcHXC", "genre": "Suspense"},
-    {"name": "励志成长-师生情谊解说", "id": "narrator-20250918141539-NnpZlD", "genre": "Inspirational"},
-    {"name": "爆笑喜剧-乌龙伪装解说", "id": "narrator-20250918183013-ktylCA", "genre": "Comedy"},
-    {"name": "灾难求生-绝境获救解说", "id": "narrator-20250919170450-ClVcgT", "genre": "Disaster"},
-    {"name": "悬疑惊悚-密室奇案解说", "id": "narrator-20250915161121-kwwIHs", "genre": "Thriller"},
-    {"name": "东方奇谈-都市修仙解说", "id": "narrator-20250915154420-YVDLiW", "genre": "Fantasy"},
-    {"name": "家庭伦理-偷听心声解说", "id": "narrator-20250915162937-zUrCtQ", "genre": "Family"},
-    {"name": "东方奇谈-情蛊拉扯解说", "id": "narrator-20250919100408-vyXstO", "genre": "Fantasy"},
-    {"name": "灾难求生-绝境反杀解说", "id": "narrator-20250919170037-ARppif", "genre": "Disaster"},
+    # 热血动作
+    {"name": "热血动作-困兽之斗解说", "id": "narrator-20250916152104-DYsban", "genre": "热血动作"},
+    {"name": "热血动作-战火祈愿解说", "id": "narrator-20251013135241-oscGNF", "genre": "热血动作"},
+    {"name": "热血动作-亡命反杀解说", "id": "narrator-20251027094011-kvuJpH", "genre": "热血动作"},
+    # 烧脑悬疑
+    {"name": "烧脑悬疑-栽赃陷害解说", "id": "narrator-20250916152053-nBcHXC", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-恶人成功解说", "id": "narrator-20250923153825-XjVolv", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-女性犯罪解说", "id": "narrator-20250929165427-wNiGuu", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-无间卧底解说", "id": "narrator-20250929180346-qZIrwc", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-金蝉脱壳解说", "id": "narrator-20250930115028-baMeEb", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-真相揭露解说", "id": "narrator-20250928113959-cceaBA", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-密室求生解说", "id": "narrator-20251024180040-xtbSzv", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-孤证追凶解说", "id": "narrator-20251027094241-FcEQRh", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-迟到正义解说", "id": "narrator-20251110134448-Wnbqcq", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-图灵测试解说", "id": "narrator-20251113154145-BHUwFE", "genre": "烧脑悬疑"},
+    {"name": "烧脑悬疑-以恶制恶解说", "id": "narrator-20251202162015-vbNHYB", "genre": "烧脑悬疑"},
+    # 励志成长
+    {"name": "励志成长-师生情谊解说", "id": "narrator-20250918141539-NnpZlD", "genre": "励志成长"},
+    {"name": "励志成长-职场逆袭解说", "id": "narrator-20250924181617-tdbfAK", "genre": "励志成长"},
+    {"name": "励志成长-草根翻身解说", "id": "narrator-20250929165344-QhCZuq", "genre": "励志成长"},
+    {"name": "励志成长-校园冒险解说", "id": "narrator-20250930115936-QUhgtx", "genre": "励志成长"},
+    {"name": "励志成长-谎言揭露解说", "id": "narrator-20251027093930-ZjWryu", "genre": "励志成长"},
+    # 爆笑喜剧
+    {"name": "爆笑喜剧-乌龙伪装解说", "id": "narrator-20250918183013-ktylCA", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-催泪反转解说", "id": "narrator-20250924170117-wDFCwI", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-抗日整蛊解说", "id": "narrator-20250924170024-uzgpov", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-人生互换解说", "id": "narrator-20250929171156-BrsDAQ", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-欢喜冤家解说", "id": "narrator-20251020160131-vpQowB", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-乌龙反转解说", "id": "narrator-20251015170653-OPraUg", "genre": "爆笑喜剧"},
+    {"name": "爆笑喜剧-翁婿大战解说", "id": "narrator-20251208154841-PzYwtq", "genre": "爆笑喜剧"},
+    # 灾难求生
+    {"name": "灾难求生-绝境获救解说", "id": "narrator-20250919170450-ClVcgT", "genre": "灾难求生"},
+    {"name": "灾难求生-绝境反杀解说", "id": "narrator-20250919170037-ARppif", "genre": "灾难求生"},
+    {"name": "灾难求生-丧尸变异解说", "id": "narrator-20250929162226-vJHwms", "genre": "灾难求生"},
+    {"name": "灾难求生-连锁困境解说", "id": "narrator-20250929163803-MSBmuw", "genre": "灾难求生"},
+    {"name": "灾难求生-怪兽灭世解说", "id": "narrator-20250929181329-HkkCNd", "genre": "灾难求生"},
+    {"name": "灾难求生-海洋求生解说", "id": "narrator-20251124153146-eTtang", "genre": "灾难求生"},
+    {"name": "灾难求生-极限逃生解说", "id": "narrator-20251208135459-bQYqJl", "genre": "灾难求生"},
+    # 悬疑惊悚 / 惊悚恐怖
+    {"name": "悬疑惊悚-密室奇案解说", "id": "narrator-20250915161121-kwwIHs", "genre": "悬疑惊悚"},
+    {"name": "惊悚恐怖-民俗鬼怪解说", "id": "narrator-20250922151737-YElQZc", "genre": "惊悚恐怖"},
+    {"name": "惊悚恐怖-怨念起源解说", "id": "narrator-20250930113312-nEKWax", "genre": "惊悚恐怖"},
+    {"name": "惊悚恐怖-无限轮回解说", "id": "narrator-20251124152521-BrEkBi", "genre": "惊悚恐怖"},
+    {"name": "惊悚恐怖-新婚猎杀解说", "id": "narrator-20251124152748-jrljzu", "genre": "惊悚恐怖"},
+    # 东方奇谈
+    {"name": "东方奇谈-都市修仙解说", "id": "narrator-20250915154420-YVDLiW", "genre": "东方奇谈"},
+    {"name": "东方奇谈-情蛊拉扯解说", "id": "narrator-20250919100408-vyXstO", "genre": "东方奇谈"},
+    {"name": "东方奇谈-以善封神解说", "id": "narrator-20250929165601-LJlMZm", "genre": "东方奇谈"},
+    {"name": "东方奇谈-志怪奇缘解说", "id": "narrator-20250929173453-PAPePO", "genre": "东方奇谈"},
+    {"name": "东方奇谈-宫斗权谋解说", "id": "narrator-20251011164028-QdtnCh", "genre": "东方奇谈"},
+    {"name": "东方奇谈-人狐情缘解说", "id": "narrator-20251020160213-vZhBdF", "genre": "东方奇谈"},
+    # 家庭伦理
+    {"name": "家庭伦理-偷听心声解说", "id": "narrator-20250915162937-zUrCtQ", "genre": "家庭伦理"},
+    {"name": "家庭伦理-禁忌诱惑解说", "id": "narrator-20251013171543-hKWxyY", "genre": "家庭伦理"},
+    # 情感人生
+    {"name": "情感人生-亡命虐恋解说", "id": "narrator-20250926153249-iLajMr", "genre": "情感人生"},
+    {"name": "情感人生-重返过去解说", "id": "narrator-20250929165350-MTiKrB", "genre": "情感人生"},
+    {"name": "情感人生-宅斗权谋解说", "id": "narrator-20250929171320-lTlKVh", "genre": "情感人生"},
+    {"name": "情感人生-亲情救赎解说", "id": "narrator-20250929173718-kXJmvj", "genre": "情感人生"},
+    {"name": "情感人生-禁忌之恋解说", "id": "narrator-20250929180959-ErBYYg", "genre": "情感人生"},
+    {"name": "情感人生-错过重逢解说", "id": "narrator-20250930113630-idjJQO", "genre": "情感人生"},
+    {"name": "情感人生-隔代亲情解说", "id": "narrator-20250930114558-nbhPEa", "genre": "情感人生"},
+    {"name": "情感人生-婚姻破裂解说", "id": "narrator-20250917165831-wGnJGP", "genre": "情感人生"},
+    {"name": "情感人生-逆袭救场解说", "id": "narrator-20251016164408-DTSoSw", "genre": "情感人生"},
+    {"name": "情感人生-宿命重逢解说", "id": "narrator-20251022114420-evOJCI", "genre": "情感人生"},
+    {"name": "情感人生-赌局救赎解说", "id": "narrator-20251027094055-htirpB", "genre": "情感人生"},
+    {"name": "情感人生-童年创伤解说", "id": "narrator-20251027094012-unpBYG", "genre": "情感人生"},
+    {"name": "情感人生-初遇心动解说", "id": "narrator-20251027094054-KaFrWF", "genre": "情感人生"},
+    {"name": "情感人生-宿敌相恋解说", "id": "narrator-20251030145038-mfCVGj", "genre": "情感人生"},
+    {"name": "情感人生-为爱殉情解说", "id": "narrator-20251014165420-xPFhHA", "genre": "情感人生"},
+    {"name": "情感人生-双向奔赴解说", "id": "narrator-20251106115918-wiEURB", "genre": "情感人生"},
+    {"name": "情感人生-返乡救赎解说", "id": "narrator-20251113153731-DRupIR", "genre": "情感人生"},
+    {"name": "情感人生-童话溯源解说", "id": "narrator-20251113154655-NnDifu", "genre": "情感人生"},
+    {"name": "情感人生-绝命循环解说", "id": "narrator-20251124153657-ZBBwwL", "genre": "情感人生"},
+    {"name": "情感人生-为爱搏命解说", "id": "narrator-20251124154511-hebvkH", "genre": "情感人生"},
+    {"name": "情感人生-爱情复仇解说", "id": "narrator-20251009143826-RQIUFF", "genre": "情感人生"},
+    {"name": "情感人生-商业联姻解说", "id": "narrator-20251009145048-CBygkT", "genre": "情感人生"},
+    {"name": "情感人生-忘年之交解说", "id": "narrator-20251202160328-KhoIpc", "genre": "情感人生"},
+    {"name": "情感人生-养老困境解说", "id": "narrator-20251202161600-Dvmdkf", "genre": "情感人生"},
+    {"name": "情感人生-向阳而生解说", "id": "narrator-20251208134824-OYNnQX", "genre": "情感人生"},
+    {"name": "情感人生-聋哑骗局解说", "id": "narrator-20251208135010-wLnfJr", "genre": "情感人生"},
+    # 奇幻科幻
+    {"name": "奇幻科幻-欲望深渊解说", "id": "narrator-20250922174548-khkyvU", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-异族重生解说", "id": "narrator-20250929173012-AptTKd", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-魔咒救赎解说", "id": "narrator-20250929180156-XqhhcL", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-异能人觉醒解说", "id": "narrator-20250930120652-AsoYAz", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-超级英雄解说", "id": "narrator-20250930172223-dWNzYw", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-上帝视角解说", "id": "narrator-20251016164239-wfMPqn", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-替身悲歌解说", "id": "narrator-20251016164259-uZELkl", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-力量诅咒解说", "id": "narrator-20251027094046-bCETIG", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-天选之人解说", "id": "narrator-20251027094101-SjLFeA", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-跌落神坛解说", "id": "narrator-20251027094142-SRepnG", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-局中局解说", "id": "narrator-20251016160421-ULNnBv", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-时空信件解说", "id": "narrator-20251110134239-aPENMc", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-拯救末日解说", "id": "narrator-20251113154508-QbYCwS", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-魔法家族解说", "id": "narrator-20251113154927-ASgxrL", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-智商开挂解说", "id": "narrator-20251202161012-GXhovQ", "genre": "奇幻科幻"},
+    {"name": "奇幻科幻-逆天改命解说", "id": "narrator-20251202160957-VKVxtY", "genre": "奇幻科幻"},
+    # 传奇人物
+    {"name": "传奇人物-枭雄末路解说", "id": "narrator-20250929171126-ChYkGc", "genre": "传奇人物"},
+    {"name": "传奇人物-人生抉择解说", "id": "narrator-20251124154053-aOUlJQ", "genre": "传奇人物"},
 ]
 
 
 @app.command("narration-styles")
 def list_narration_styles(
+    genre: Optional[str] = typer.Option(None, "--genre", "-g", help="Filter by genre (e.g. 情感人生, 烧脑悬疑, 爆笑喜剧)"),
     json_mode: bool = typer.Option(False, "--json", help="Output as JSON"),
 ):
     """List pre-built narration style templates (learning_model_id).
@@ -486,14 +578,25 @@ def list_narration_styles(
     matches your movie, then pass the ID as learning_model_id in generate-writing
     or fast-writing.
 
-    Full template details: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+    Available genres: 热血动作, 烧脑悬疑, 励志成长, 爆笑喜剧, 灾难求生,
+    悬疑惊悚, 惊悚恐怖, 东方奇谈, 家庭伦理, 情感人生, 奇幻科幻, 传奇人物
+
+    View template previews: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
     """
+    items = NARRATION_TEMPLATES
+    if genre:
+        items = [t for t in items if genre in t["genre"]]
+        if not items:
+            genres = sorted(set(t["genre"] for t in NARRATION_TEMPLATES))
+            print_error(f"No templates for genre '{genre}'. Available: {', '.join(genres)}")
+            raise typer.Exit(1)
     if json_mode:
-        print_json(NARRATION_TEMPLATES)
+        print_json(items)
     else:
+        title = f"Narration Styles - {genre}" if genre else f"Narration Styles ({len(items)} templates)"
         columns = [("name", "Template"), ("id", "learning_model_id"), ("genre", "Genre")]
-        print_table(NARRATION_TEMPLATES, columns, title="Pre-built Narration Styles")
-        console.print("\n[dim]Full details: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc[/dim]")
+        print_table(items, columns, title=title)
+        console.print("\n[dim]View previews: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc[/dim]")
 
 
 @app.command("templates")
