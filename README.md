@@ -140,30 +140,75 @@ narrator-ai-cli task query <task_id> --json
 | `file storage` | Show storage usage |
 | `file delete <file_id>` | Delete a file |
 
-## Pre-built Narration Templates
+### Material (Pre-built Movie Materials)
 
-Use these instead of running popular-learning. Pass the `learning_model_id` directly.
+| Command | Description |
+|---------|-------------|
+| `material list` | List all 93 pre-built movies (`--genre`, `--search` filters) |
+| `material genres` | List available movie genres with counts |
 
-| Template | ID | Genre |
-|----------|----|-------|
-| 热血动作-困兽之斗解说 | `narrator-20250916152104-DYsban` | Action |
-| 烧脑悬疑-栽赃陷害解说 | `narrator-20250916152053-nBcHXC` | Suspense |
-| 励志成长-师生情谊解说 | `narrator-20250918141539-NnpZlD` | Inspirational |
-| 爆笑喜剧-乌龙伪装解说 | `narrator-20250918183013-ktylCA` | Comedy |
-| 灾难求生-绝境获救解说 | `narrator-20250919170450-ClVcgT` | Disaster |
-| 悬疑惊悚-密室奇案解说 | `narrator-20250915161121-kwwIHs` | Thriller |
-| 东方奇谈-都市修仙解说 | `narrator-20250915154420-YVDLiW` | Fantasy |
-| 家庭伦理-偷听心声解说 | `narrator-20250915162937-zUrCtQ` | Family |
-| 东方奇谈-情蛊拉扯解说 | `narrator-20250919100408-vyXstO` | Fantasy |
-| 灾难求生-绝境反杀解说 | `narrator-20250919170037-ARppif` | Disaster |
+### BGM (Background Music)
 
-Full template documentation: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+| Command | Description |
+|---------|-------------|
+| `bgm list` | List all 146 BGM tracks (`--search` filter) |
+
+### Dubbing (Voice)
+
+| Command | Description |
+|---------|-------------|
+| `dubbing list` | List all 63 voices (`--lang`, `--tag`, `--search` filters) |
+| `dubbing languages` | List available languages (dubbing_type values) |
+| `dubbing tags` | List genre recommendation tags |
+
+## Pre-built Resources
+
+All resources can be previewed at: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+
+### Narration Templates (90+)
+
+```bash
+narrator-ai-cli task narration-styles                    # list all
+narrator-ai-cli task narration-styles --genre 爆笑喜剧   # filter by genre
+```
+
+12 genres: 热血动作, 烧脑悬疑, 励志成长, 爆笑喜剧, 灾难求生, 悬疑惊悚, 惊悚恐怖, 东方奇谈, 家庭伦理, 情感人生, 奇幻科幻, 传奇人物
+
+### Movie Materials (93 movies)
+
+```bash
+narrator-ai-cli material list                            # list all
+narrator-ai-cli material list --genre 喜剧片             # filter by genre
+narrator-ai-cli material list --search "飞驰人生"         # search by name
+```
+
+Each movie provides `video_id` and `srt_id` for use in `episodes_data`.
+
+### BGM Tracks (146 tracks)
+
+```bash
+narrator-ai-cli bgm list                                 # list all
+narrator-ai-cli bgm list --search "单车"                 # search by name
+```
+
+### Dubbing Voices (63 voices, 11 languages)
+
+```bash
+narrator-ai-cli dubbing list                             # list all
+narrator-ai-cli dubbing list --lang 普通话               # filter by language
+narrator-ai-cli dubbing list --tag 喜剧                  # filter by genre tag
+narrator-ai-cli dubbing languages                        # list languages
+```
+
+Languages: 普通话(39), 英语(4), 日语(3), 韩语(2), 西班牙语(3), 葡萄牙语(2), 德语(2), 法语(2), 阿拉伯语(2), 泰语(2), 印尼语(2)
 
 ## Data Flow
 
 ```
-                     file upload / file list
-                     -> video_file_id, srt_file_id, bgm_id
+                     file upload / file list / material list
+                     -> video_file_id, srt_file_id
+                     bgm list -> bgm_id
+                     dubbing list -> dubbing, dubbing_type
 
     Standard Path                          Fast Path
     ─────────────                          ─────────
@@ -230,8 +275,11 @@ src/narrator_ai/
 ├── commands/
 │   ├── config_cmd.py   # config init/show/set
 │   ├── user.py         # balance/login/keys
-│   ├── task.py         # task workflow commands
-│   └── file.py         # file upload/download/list
+│   ├── task.py         # task workflow commands (90+ narration templates)
+│   ├── file.py         # file upload/download/list
+│   ├── materials.py    # 93 pre-built movie materials
+│   ├── bgm.py          # 146 pre-built BGM tracks
+│   └── dubbing.py      # 63 pre-built dubbing voices
 └── models/
     └── responses.py    # API response code constants
 ```

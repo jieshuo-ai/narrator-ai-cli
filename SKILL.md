@@ -58,31 +58,44 @@ narrator-ai-cli task create fast-writing --json -d '{
 
 ## Prerequisites Before Creating Tasks
 
-### 1. Select Source Files
+### 1. Select Source Files (Video + SRT)
 
-Video and SRT files needed for task creation come from the file list. Upload files first if needed,
-then list and pick the file_ids.
+Use pre-built movie materials OR upload your own files:
 
 ```bash
-# Upload a file (returns file_id)
+# Option A: Pre-built materials (93 movies, recommended)
+narrator-ai-cli material list --json
+narrator-ai-cli material list --search "飞驰人生" --json
+narrator-ai-cli material list --genre 喜剧片 --json
+# Returns: video_id (= video_oss_key & negative_oss_key), srt_id (= srt_oss_key)
+
+# Option B: Upload your own
 narrator-ai-cli file upload ./movie.mp4 --json
 narrator-ai-cli file upload ./subtitles.srt --json
-
-# List available files to pick from
 narrator-ai-cli file list --json
-
-# Filter by filename
-narrator-ai-cli file list --search "飞驰人生" --json
 ```
 
-The `file_id` from the list is used as:
-- `video_oss_key` / `video_path` — source video
-- `srt_oss_key` / `video_srt_path` — subtitle file
-- `learning_srt` — reference narration SRT (when not using pre-built template)
-- `bgm` — background music file
-- `audio_file_id` — voice clone audio sample
+### 2. Select BGM (Background Music)
 
-### 2. Search Movie Info
+```bash
+narrator-ai-cli bgm list --json                         # 146 tracks
+narrator-ai-cli bgm list --search "单车" --json
+# Returns: id (= bgm parameter in task creation)
+```
+
+### 3. Select Dubbing Voice
+
+```bash
+narrator-ai-cli dubbing list --json                      # 63 voices, 11 languages
+narrator-ai-cli dubbing list --lang 普通话 --json        # filter by language
+narrator-ai-cli dubbing list --tag 喜剧 --json           # filter by genre match
+narrator-ai-cli dubbing languages --json                 # list all languages
+# Returns: id (= dubbing), type (= dubbing_type) for task creation
+```
+
+All resources can be previewed at: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+
+### 4. Search Movie Info
 
 Before creating a fast-writing task with `target_mode=1` (Hot Drama), you MUST search for the movie first
 and use one of the returned results as `confirmed_movie_json`. Do NOT fabricate movie info — it will produce
@@ -374,6 +387,19 @@ narrator-ai-cli file storage --json                    # Storage usage
 narrator-ai-cli file delete <file_id> --json           # Delete file
 ```
 
+### Pre-built Resources
+
+```bash
+narrator-ai-cli material list --json                   # 93 movies (--genre, --search)
+narrator-ai-cli material genres --json                 # movie genres
+narrator-ai-cli bgm list --json                        # 146 BGM tracks (--search)
+narrator-ai-cli dubbing list --json                    # 63 voices (--lang, --tag, --search)
+narrator-ai-cli dubbing languages --json               # dubbing_type values
+narrator-ai-cli dubbing tags --json                    # genre tags
+```
+
+All resources can be previewed at: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
+
 ### Check Balance
 
 ```bash
@@ -383,11 +409,12 @@ narrator-ai-cli user balance --json
 ## Data Flow Summary
 
 ```
-                        ┌─────────────────────────────────────────┐
-                        │   file upload / file list                │
-                        │   -> video_file_id, srt_file_id, bgm_id │
-                        │   (pick file_ids from file list)         │
-                        └──────────────┬──────────────────────────┘
+                        ┌─────────────────────────────────────────────┐
+                        │   material list / file upload / file list    │
+                        │   -> video_file_id, srt_file_id              │
+                        │   bgm list -> bgm_id                         │
+                        │   dubbing list -> dubbing, dubbing_type      │
+                        └──────────────┬──────────────────────────────┘
                                        │
          ┌─────────────────────────────┼─────────────────────────────┐
          │ Standard Path               │                Fast Path    │
