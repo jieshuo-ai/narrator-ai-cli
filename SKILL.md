@@ -142,14 +142,18 @@ narrator-ai-cli task search-movie "<movie_name>" --json
 
 # 2b. Create writing task
 narrator-ai-cli task create generate-writing --json -d '{
-  "learning_model_id": "<from step 1>",
+  "learning_model_id": "<from step 1 or pre-built template>",
+  "learning_srt": "",
+  "native_video": "",
+  "native_srt": "",
   "playlet_name": "Movie Name",
   "playlet_num": "1",
   "target_platform": "抖音",
   "vendor_requirements": "",
-  "target_character_name": "",
-  "story_info": "<summary from search result>",
-  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "num": 1}]
+  "task_count": 1,
+  "target_character_name": "<main_character_name>",
+  "story_info": "",
+  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "negative_oss_key": "<video_file_id>", "num": 1}]
 }'
 ```
 
@@ -165,8 +169,8 @@ Generate editing timeline from narration script.
 narrator-ai-cli task create clip-data --json -d '{
   "order_num": "<task_order_num from step 2>",
   "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice"
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话"
 }'
 ```
 
@@ -181,8 +185,8 @@ Compose final video. **IMPORTANT**: `order_num` comes from step 2 (generate-writ
 narrator-ai-cli task create video-composing --json -d '{
   "order_num": "<task_order_num from step 2 (generate-writing)>",
   "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice"
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话"
 }'
 ```
 
@@ -280,9 +284,9 @@ narrator-ai-cli task create fast-clip-data --json -d '{
   "task_id": "<task_id from step 1>",
   "file_id": "<results.file_ids[0] from step 1>",
   "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice",
-  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "num": 1}]
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话",
+  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "negative_oss_key": "<video_file_id>", "num": 1}]
 }'
 ```
 

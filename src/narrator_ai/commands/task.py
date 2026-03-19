@@ -220,10 +220,10 @@ def create(
       narrator-ai-cli task create fast-writing -d '{"learning_model_id": "<id>", "target_mode": "1", "playlet_name": "Movie", "confirmed_movie_json": {...}}'
 
       # Generate clip data (Standard Path Step 3)
-      narrator-ai-cli task create clip-data -d '{"order_num": "<generate_writing_order_num>", "bgm": "<file_id>", "dubbing": "<voice_id>", "dubbing_type": "cosyvoice"}'
+      narrator-ai-cli task create clip-data -d '{"order_num": "<order_num>", "bgm": "<bgm_file_id>", "dubbing": "MiniMaxVoiceId20", "dubbing_type": "普通话"}'
 
       # Compose video (Step 4 Standard / Step 3 Fast)
-      narrator-ai-cli task create video-composing -d '{"order_num": "<generate_writing_order_num>", "bgm": "<file_id>", "dubbing": "<voice_id>", "dubbing_type": "cosyvoice"}'
+      narrator-ai-cli task create video-composing -d '{"order_num": "<order_num>", "bgm": "<bgm_file_id>", "dubbing": "MiniMaxVoiceId20", "dubbing_type": "普通话"}'
 
       # Visual template (optional final step)
       narrator-ai-cli task create magic-video -d '{"task_id": "<video_composing_task_id>", "template_name": ["template"]}'

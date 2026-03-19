@@ -66,13 +66,17 @@ narrator-ai-cli file list --json
 # 2c. Create task
 narrator-ai-cli task create generate-writing --json -d '{
   "learning_model_id": "<template_id or from step 1>",
+  "learning_srt": "",
+  "native_video": "",
+  "native_srt": "",
   "playlet_name": "<movie_name>",
   "playlet_num": "1",
   "target_platform": "抖音",
   "vendor_requirements": "",
-  "target_character_name": "",
-  "story_info": "<summary from search>",
-  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "num": 1}]
+  "task_count": 1,
+  "target_character_name": "<main_character_name>",
+  "story_info": "",
+  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "negative_oss_key": "<video_file_id>", "num": 1}]
 }'
 # Poll -> extract task_order_num and results.file_ids[0]
 ```
@@ -82,9 +86,9 @@ narrator-ai-cli task create generate-writing --json -d '{
 ```bash
 narrator-ai-cli task create clip-data --json -d '{
   "order_num": "<task_order_num from step 2>",
-  "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice"
+  "bgm": "<bgm_file_id from file list>",
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话"
 }'
 # Poll -> extract results.file_ids[0]
 ```
@@ -96,9 +100,9 @@ narrator-ai-cli task create clip-data --json -d '{
 ```bash
 narrator-ai-cli task create video-composing --json -d '{
   "order_num": "<task_order_num from step 2>",
-  "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice"
+  "bgm": "<bgm_file_id from file list>",
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话"
 }'
 # Poll -> extract video URLs from results
 ```
@@ -158,10 +162,10 @@ target_mode: "1"=Hot Drama (needs confirmed_movie_json), "2"=Original Mix (needs
 narrator-ai-cli task create fast-clip-data --json -d '{
   "task_id": "<task_id from step 1>",
   "file_id": "<results.file_ids[0] from step 1>",
-  "bgm": "<bgm_file_id>",
-  "dubbing": "<voice_id>",
-  "dubbing_type": "cosyvoice",
-  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "num": 1}]
+  "bgm": "<bgm_file_id from file list>",
+  "dubbing": "<voice_id, e.g. MiniMaxVoiceId20>",
+  "dubbing_type": "普通话",
+  "episodes_data": [{"video_oss_key": "<video_file_id>", "srt_oss_key": "<srt_file_id>", "negative_oss_key": "<video_file_id>", "num": 1}]
 }'
 # Poll -> extract task_order_num
 ```
