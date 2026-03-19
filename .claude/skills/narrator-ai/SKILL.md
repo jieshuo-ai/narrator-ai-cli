@@ -221,6 +221,10 @@ narrator-ai-cli material list --json                     # list all movies
 narrator-ai-cli material list --genre 喜剧片 --json      # filter by genre
 narrator-ai-cli material list --search "飞驰" --json     # search by name
 narrator-ai-cli material genres --json                   # list available genres
+
+# Pre-built BGM Tracks (146 tracks)
+narrator-ai-cli bgm list --json                          # list all BGM
+narrator-ai-cli bgm list --search "单车" --json          # search by name
 ```
 
 ## Task Status Codes
