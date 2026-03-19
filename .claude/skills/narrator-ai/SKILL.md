@@ -25,11 +25,15 @@ narrator-ai-cli config set app_key <app_key>
 
 1. **ALWAYS use `--json`** for all commands. Parse the JSON output to extract values for next steps.
 2. **NEVER fabricate `confirmed_movie_json`** — always use `narrator-ai-cli task search-movie` result.
-3. **NEVER guess file_ids** — get video/srt from `material list` or `file list`, bgm from `bgm list`, dubbing from `dubbing list`.
+3. **NEVER guess IDs** — get video/srt from `material list` (pre-built) or `file list` (user-uploaded), bgm from `bgm list` (pre-built) or `file list` (user-uploaded audio), dubbing from `dubbing list`.
 4. **Poll task status** — tasks are async. After creation, poll with `narrator-ai-cli task query <task_id> --json` until `status` is `2` (success) or `3` (failed).
-5. **video-composing uses generate-writing's order_num**, NOT clip-data's.
+5. **video-composing order_num source differs by path**:
+   - Standard Path: use `generate-writing`'s `task_order_num` (NOT clip-data's)
+   - Fast Path: use `fast-clip-data`'s `task_order_num`
 6. **Prefer pre-built narration templates** — use `narrator-ai-cli task narration-styles --json` to list. Pick the genre matching the movie.
 7. **search-movie may take 60+ seconds** — this is normal (Gradio backend).
+8. **dubbing list returns `id` and `type`** — pass `id` as `dubbing`, pass `type` as `dubbing_type`. They are separate fields.
+9. **negative_oss_key = video_oss_key** — always set `negative_oss_key` to the same value as `video_oss_key` in episodes_data.
 
 ## Workflow Path 1: Standard
 
@@ -186,7 +190,23 @@ narrator-ai-cli task create fast-clip-data --json -d '{
 # Poll -> extract task_order_num
 ```
 
-### Step 3-4: Same as Standard Path Steps 4-5
+### Step 3: Video Composing
+
+**IMPORTANT**: In Fast Path, `order_num` comes from `fast-clip-data`'s `task_order_num` (NOT from generate-writing, since Fast Path has no generate-writing step).
+
+```bash
+narrator-ai-cli task create video-composing --json -d '{
+  "order_num": "<task_order_num from step 2 (fast-clip-data)>",
+  "bgm": "<id from bgm list or file list>",
+  "dubbing": "<id from dubbing list>",
+  "dubbing_type": "<type from dubbing list>"
+}'
+# Poll -> extract video URLs from results
+```
+
+### Step 4 (Optional): Magic Video
+
+Same as Standard Path Step 5.
 
 ## Standalone Tasks
 
