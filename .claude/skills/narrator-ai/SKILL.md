@@ -225,6 +225,15 @@ narrator-ai-cli material genres --json                   # list available genres
 # Pre-built BGM Tracks (146 tracks)
 narrator-ai-cli bgm list --json                          # list all BGM
 narrator-ai-cli bgm list --search "单车" --json          # search by name
+
+# Pre-built Dubbing Voices (63 voices, 11 languages)
+narrator-ai-cli dubbing list --json                      # list all voices
+narrator-ai-cli dubbing list --lang 普通话 --json        # filter by language (= dubbing_type)
+narrator-ai-cli dubbing list --tag 喜剧 --json           # filter by genre tag
+narrator-ai-cli dubbing list --search "沈腾" --json      # search by name
+narrator-ai-cli dubbing languages --json                 # list languages
+narrator-ai-cli dubbing tags --json                      # list genre tags
+# IMPORTANT: the voice 'type' field IS the 'dubbing_type' value for task creation
 ```
 
 ## Task Status Codes

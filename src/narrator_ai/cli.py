@@ -3,7 +3,7 @@
 import typer
 
 from narrator_ai import __version__
-from narrator_ai.commands import bgm, config_cmd, file, materials, task, user
+from narrator_ai.commands import bgm, config_cmd, dubbing, file, materials, task, user
 
 EPILOG = """
 Workflow Paths:
@@ -39,6 +39,7 @@ app.add_typer(task.app, name="task")
 app.add_typer(file.app, name="file")
 app.add_typer(materials.app, name="material")
 app.add_typer(bgm.app, name="bgm")
+app.add_typer(dubbing.app, name="dubbing")
 
 
 def version_callback(value: bool):
