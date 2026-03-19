@@ -5,11 +5,10 @@ CLI client for Narrator AI video narration API. Use this tool to create AI-narra
 ## Setup
 
 ```bash
-narrator-ai-cli config set server <server_url>
 narrator-ai-cli config set app_key <your_app_key>
 ```
 
-Or via environment variables: `NARRATOR_SERVER`, `NARRATOR_APP_KEY`.
+Server defaults to `https://openapi.jieshuo.cn`. Override via environment variable `NARRATOR_SERVER` if needed.
 
 ## Core Concepts
 

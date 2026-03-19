@@ -9,6 +9,7 @@ app = typer.Typer(
     help=(
         "Manage CLI configuration.\n\n"
         "Config is stored in ~/.narrator-ai/config.yaml.\n"
+        "Server defaults to https://openapi.jieshuo.cn. Only app_key is required.\n"
         "Environment variables NARRATOR_SERVER, NARRATOR_APP_KEY, NARRATOR_TIMEOUT override config values."
     ),
 )
@@ -16,17 +17,14 @@ app = typer.Typer(
 
 @app.command()
 def init(
-    server: str = typer.Option(..., prompt="Server URL (e.g. https://api.example.com)"),
     app_key: str = typer.Option(..., prompt="App Key"),
     timeout: int = typer.Option(30, help="Request timeout in seconds"),
 ):
-    """Initialize configuration interactively. Prompts for server URL and app key."""
-    config = {
-        "server": server.rstrip("/"),
-        "app_key": app_key,
-        "timeout": timeout,
-    }
-    save_config(config)
+    """Initialize configuration. Only app_key is required (server is pre-configured)."""
+    cfg = load_config()
+    cfg["app_key"] = app_key
+    cfg["timeout"] = timeout
+    save_config(cfg)
     print_success(f"Config saved to {CONFIG_FILE}")
 
 
@@ -36,7 +34,6 @@ def show(
 ):
     """Show current configuration (app key is always masked)."""
     cfg = load_config()
-    # Always mask the app key to prevent leaking in logs
     if cfg.get("app_key"):
         key = cfg["app_key"]
         if len(key) > 8:
@@ -54,7 +51,6 @@ def set_value(
     """Set a single configuration value.
 
     Examples:
-      narrator-ai-cli config set server https://api.example.com
       narrator-ai-cli config set app_key your_api_key
       narrator-ai-cli config set timeout 60
     """

@@ -17,9 +17,9 @@ narrator-ai-cli config show
 ```
 If not configured, set up with:
 ```bash
-narrator-ai-cli config set server <server_url>
 narrator-ai-cli config set app_key <app_key>
 ```
+Server defaults to `https://openapi.jieshuo.cn` — no need to configure.
 
 ## Core Rules
 

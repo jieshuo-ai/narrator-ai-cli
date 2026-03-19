@@ -12,7 +12,7 @@ CONFIG_DIR = Path.home() / ".narrator-ai"
 CONFIG_FILE = CONFIG_DIR / "config.yaml"
 
 DEFAULT_CONFIG = {
-    "server": "",
+    "server": "https://openapi.jieshuo.cn",
     "app_key": "",
     "timeout": 30,
 }

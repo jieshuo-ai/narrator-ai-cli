@@ -44,8 +44,7 @@ narrator-ai-cli --version
 # Interactive setup
 narrator-ai-cli config init
 
-# Or set individually
-narrator-ai-cli config set server https://your-api-server.com
+# Or set directly
 narrator-ai-cli config set app_key your_api_key
 
 # Verify

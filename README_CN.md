@@ -44,8 +44,7 @@ narrator-ai-cli --version
 # 交互式配置
 narrator-ai-cli config init
 
-# 或逐个设置
-narrator-ai-cli config set server https://your-api-server.com
+# 或直接设置
 narrator-ai-cli config set app_key your_api_key
 
 # 查看配置
