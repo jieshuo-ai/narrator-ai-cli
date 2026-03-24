@@ -14,11 +14,21 @@ Two workflow paths for creating AI-narrated videos:
 
 ### One-line Install
 
+Prerequisites: [Python 3.10+](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads)
+
+**macOS / Linux**
+
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jieshuo-ai/narrator-ai-cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jieshuo-ai/narrator-ai-cli/main/install.py | python3
 ```
 
-This will clone the repo, create a virtualenv, install the CLI, and add it to your PATH.
+**Windows (CMD / PowerShell)**
+
+```bat
+python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/jieshuo-ai/narrator-ai-cli/main/install.py').read())"
+```
+
+The installer clones the repo, creates a virtualenv, installs the CLI, and adds it to your PATH — works on all platforms with no shell-specific tools.
 
 ### Manual Install
 
