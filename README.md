@@ -1,95 +1,131 @@
-# narrator-ai-cli
+# 🎬 Narrator AI CLI — Create Movie Narration Videos with Natural Language
 
 [中文文档](README_CN.md)
 
-CLI client for Narrator AI video narration API. Designed for AI Agents and developers.
+> One command to install, one sentence to create videos. 93 built-in movies, 146 BGM tracks, 63 dubbing voices, 90+ narration templates — ready out of the box.
 
-Two workflow paths for creating AI-narrated videos:
+## What is this?
 
-- **Adapted Narration** (二创文案): popular-learning -> generate-writing -> clip-data -> video-composing -> magic-video
-- **Original Narration** (原创文案, faster & cheaper): fast-writing -> fast-clip-data -> video-composing -> magic-video
-  - 3 modes: Hot Drama / Original Mix / New Drama
+Narrator AI CLI is the command-line tool for [Narrator AI](https://ai.jieshuo.cn/), an AI-powered video narration platform. Once installed in your AI agent (OpenClaw, Windsurf, WorkBuddy, etc.), just say:
 
-## Installation
+> "Create a movie narration video for Pegasus in a comedy style"
 
-### One-line Install
+The AI handles everything automatically:
 
-Prerequisites: [Python 3.10+](https://www.python.org/downloads/), [Git](https://git-scm.com/downloads)
+```
+Select movie → Match narration style → Generate script → Compose video → Output download link
+```
+
+**No manual steps required. The AI completes the entire pipeline for you.**
+
+### What it can do
+
+- ✅ **Movie narration videos**: Input a movie name, get a complete narration video (script + voiceover + footage + BGM)
+- ✅ **Multiple narration styles**: Action, Comedy, Thriller and more — 12 genres, 90+ templates
+- ✅ **Multi-language voiceover**: 11 languages including English, Mandarin, Japanese, and 63 voice characters
+- ✅ **Batch production**: Tell the AI "make 10 narration videos" and it will process them one by one
+- ✅ **Run unattended**: Let the agent work while you sleep
+
+---
+
+## Quick Start
+
+### Step 1: Install the CLI
+
+Prerequisites: [Python 3.10+](https://www.python.org/downloads/) (check "Add to PATH"), [Git](https://git-scm.com/downloads)
 
 **macOS / Linux**
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/jieshuo-ai/narrator-ai-cli/main/install.py | python3
 ```
 
 **Windows (CMD / PowerShell)**
-
 ```bat
 python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/jieshuo-ai/narrator-ai-cli/main/install.py').read())"
 ```
 
-The installer clones the repo, creates a virtualenv, installs the CLI, and adds it to your PATH — works on all platforms with no shell-specific tools.
-
-### Manual Install
-
-Requires Python 3.10+ and pip or uv.
-
-```bash
-git clone https://github.com/jieshuo-ai/narrator-ai-cli.git
-cd narrator-ai-cli
-pip install -e .
-```
-
-### Verify
-
+Verify:
 ```bash
 narrator-ai-cli --version
 ```
 
-## Quick Start
+### Step 2: Get an API Key
 
-### 1. Configure
+> 📧 Email **merlinyang@gridltd.com** or scan the QR code below to get your API key.
+
+![Contact us](./imgs/contact.png)
+
+### Step 3: Configure
 
 ```bash
-# Interactive setup
-narrator-ai-cli config init
-
-# Or set directly
 narrator-ai-cli config set app_key your_api_key
-
-# Verify
-narrator-ai-cli config show
 ```
 
-### 2. Check Account
+### Step 4: Start creating videos!
 
-```bash
-narrator-ai-cli user balance
+If using with an AI agent (OpenClaw, etc.), just use natural language:
+
+> "Create a narration video for The Shawshank Redemption with an inspirational style"
+
+For terminal usage, see Command Reference below.
+
+---
+
+## Using with AI Agents (Recommended)
+
+This tool works best with AI agents. Install the Skill so the agent knows how to use these commands.
+
+👉 **Install the Skill**: [narrator-ai-cli-skill](https://github.com/jieshuo-ai/narrator-ai-cli-skill)
+
+### Tested Platforms
+
+| Platform | Setup | Experience |
+|----------|-------|------------|
+| **Windsurf** | CLI repo only | ⭐⭐⭐⭐⭐ Auto-understands |
+| **WorkBuddy** (Tencent) | CLI + Skill repos | ⭐⭐⭐⭐⭐ Smooth |
+| **Youdao Lobster** | CLI + Skill repos | ⭐⭐⭐⭐ Reliable |
+| **QClaw** (Tencent) | CLI + Skill repos | ⭐⭐⭐⭐ Reliable |
+| **Yuanqi AI** | CLI + Skill repos | ⭐⭐⭐ Functional |
+
+> 💡 **Note**: Most domestic Chinese AI agents require both CLI and Skill repo URLs. Windsurf can work with just the CLI repo.
+
+---
+
+## Built-in Resources
+
+No uploads needed — all of these are ready to use:
+
+| Resource | Count | Command |
+|----------|-------|---------|
+| 🎬 Movie materials | 93 movies | `narrator-ai-cli material list` |
+| 🎵 Background music | 146 tracks | `narrator-ai-cli bgm list` |
+| 🎙️ Dubbing voices | 63 voices (11 languages) | `narrator-ai-cli dubbing list` |
+| 📝 Narration templates | 90+ (12 genres) | `narrator-ai-cli task narration-styles` |
+
+> 🔗 Preview all resources: [Feishu Docs](https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc)
+
+---
+
+## Two Workflow Paths
+
+### Original Narration (Recommended — faster & cheaper)
+
+```
+Search movie → Fast writing → Fast clip data → Video composing → Magic video (optional)
 ```
 
-### 3. Create a Narrated Video (Original Narration Path)
+3 modes:
+- **Hot Drama**: Well-known movies with full info available
+- **Original Mix**: Mix original audio with narration
+- **New Drama**: Short dramas or movies without full info
 
-```bash
-# Step 1: Pick a narration style template
-narrator-ai-cli task narration-styles
+### Adapted Narration
 
-# Step 2: Search movie info
-narrator-ai-cli task search-movie "Pegasus" --json
-
-# Step 3: Create narration script
-narrator-ai-cli task create fast-writing --json -d '{
-  "learning_model_id": "narrator-20250916152104-DYsban",
-  "target_mode": "1",
-  "playlet_name": "Pegasus",
-  "confirmed_movie_json": { ... },
-  "model": "flash"
-}'
-
-# Step 4: Poll until done
-narrator-ai-cli task query <task_id> --json
-
-# Step 5: Continue with clip-data, video-composing, magic-video...
 ```
+Popular learning → Generate writing → Clip data → Video composing → Magic video (optional)
+```
+
+---
 
 ## Command Reference
 
@@ -97,7 +133,7 @@ narrator-ai-cli task query <task_id> --json
 
 | Command | Description |
 |---------|-------------|
-| `config init` | Interactive setup (server URL + app key) |
+| `config init` | Interactive setup (server URL + API key) |
 | `config show` | Show current config (key masked) |
 | `config set <key> <value>` | Set a config value |
 
@@ -118,13 +154,13 @@ narrator-ai-cli task query <task_id> --json
 | `task create <type> -d '{...}'` | Create a task |
 | `task query <task_id>` | Query task status and results |
 | `task list` | List tasks with filters |
-| `task budget -d '{...}'` | Estimate points consumption |
-| `task verify -d '{...}'` | Verify materials before task creation |
-| `task search-movie "<name>"` | Search movie info for original narration |
-| `task narration-styles` | List pre-built narration templates (90+) |
+| `task budget -d '{...}'` | Estimate credits consumption |
+| `task verify -d '{...}'` | Verify materials before creation |
+| `task search-movie "<name>"` | Search movie info |
+| `task narration-styles` | List narration templates (90+) |
 | `task templates` | List visual templates for magic-video |
-| `task get-writing` | Retrieve generated narration script |
-| `task save-writing -d '{...}'` | Save modified narration script |
+| `task get-writing` | Retrieve generated script |
+| `task save-writing -d '{...}'` | Save modified script |
 | `task save-clip -d '{...}'` | Save modified clip data |
 
 **Task Types:**
@@ -136,7 +172,7 @@ narrator-ai-cli task query <task_id> --json
 | `fast-writing` | Original Narration Step 1 |
 | `clip-data` | Adapted Narration Step 3 |
 | `fast-clip-data` | Original Narration Step 2 |
-| `video-composing` | Adapted Step 4 / Original Step 3 |
+| `video-composing` | Video composing (both paths) |
 | `magic-video` | Optional final step (visual template) |
 | `voice-clone` | Standalone |
 | `tts` | Standalone |
@@ -146,73 +182,23 @@ narrator-ai-cli task query <task_id> --json
 | Command | Description |
 |---------|-------------|
 | `file upload <path>` | Upload file (returns file_id) |
+| `file transfer --link <url>` | Transfer remote file by link (HTTP / Baidu Netdisk / PikPak) |
 | `file list` | List uploaded files |
 | `file info <file_id>` | Get file details |
 | `file download <file_id>` | Get presigned download URL |
-| `file storage` | Show storage usage |
+| `file storage` | Show storage usage (3GB limit) |
 | `file delete <file_id>` | Delete a file |
 
-### Material (Pre-built Movie Materials)
+### Materials / BGM / Dubbing
 
 | Command | Description |
 |---------|-------------|
-| `material list` | List all 93 pre-built movies (`--genre`, `--search` filters) |
-| `material genres` | List available movie genres with counts |
-
-### BGM (Background Music)
-
-| Command | Description |
-|---------|-------------|
-| `bgm list` | List all 146 BGM tracks (`--search` filter) |
-
-### Dubbing (Voice)
-
-| Command | Description |
-|---------|-------------|
-| `dubbing list` | List all 63 voices (`--lang`, `--tag`, `--search` filters) |
-| `dubbing languages` | List available languages (dubbing_type values) |
+| `material list` | List 93 pre-built movies (`--genre`, `--search`) |
+| `material genres` | List movie genres with counts |
+| `bgm list` | List 146 BGM tracks (`--search`) |
+| `dubbing list` | List 63 voices (`--lang`, `--tag`, `--search`) |
+| `dubbing languages` | List supported languages |
 | `dubbing tags` | List genre recommendation tags |
-
-## Pre-built Resources
-
-All resources can be previewed at: https://ceex7z9m67.feishu.cn/wiki/WLPnwBysairenFkZDbicZOfKnbc
-
-### Narration Templates (90+)
-
-```bash
-narrator-ai-cli task narration-styles                    # list all
-narrator-ai-cli task narration-styles --genre Action     # filter by genre
-```
-
-12 genres available. Use `narrator-ai-cli task narration-styles --json` to see all.
-
-### Movie Materials (93 movies)
-
-```bash
-narrator-ai-cli material list                            # list all
-narrator-ai-cli material list --genre Comedy             # filter by genre
-narrator-ai-cli material list --search "Pegasus"         # search by name
-```
-
-Each movie provides `video_id` and `srt_id` for use in `episodes_data`.
-
-### BGM Tracks (146 tracks)
-
-```bash
-narrator-ai-cli bgm list                                 # list all
-narrator-ai-cli bgm list --search "River"                # search by name
-```
-
-### Dubbing Voices (63 voices, 11 languages)
-
-```bash
-narrator-ai-cli dubbing list                             # list all
-narrator-ai-cli dubbing list --lang English              # filter by language
-narrator-ai-cli dubbing list --tag Comedy                # filter by genre tag
-narrator-ai-cli dubbing languages                        # list languages
-```
-
-Languages: Mandarin (39), English (4), Japanese (3), Korean (2), Spanish (3), Portuguese (2), German (2), French (2), Arabic (2), Thai (2), Indonesian (2).
 
 ## Data Flow
 
@@ -222,8 +208,8 @@ Languages: Mandarin (39), English (4), Japanese (3), Korean (2), Spanish (3), Po
                      bgm list -> bgm_id
                      dubbing list -> dubbing, dubbing_type
 
-    Adapted Narration                    Original Narration
-    ─────────────────                    ──────────────────
+    Adapted Narration                    Original Narration (faster)
+    ─────────────────                    ────────────────────────────
     popular-learning (optional)          search-movie
     OUT: learning_model_id               OUT: confirmed_movie_json
       OR use pre-built template                  │
@@ -251,63 +237,30 @@ Languages: Mandarin (39), English (4), Japanese (3), Korean (2), Spanish (3), Po
 
 ## JSON Output
 
-All commands support `--json` for machine-readable output (recommended for AI agents):
+All commands support `--json` for structured output (recommended for AI agents):
 
 ```bash
 narrator-ai-cli task list --json
 narrator-ai-cli task query <task_id> --json
-narrator-ai-cli file list --json
-```
-
-Request body can be passed as inline JSON or from a file:
-
-```bash
-narrator-ai-cli task create fast-writing -d '{"key": "value"}'
-narrator-ai-cli task create fast-writing -d @params.json
 ```
 
 ## Environment Variables
-
-Override config file values:
 
 | Variable | Description |
 |----------|-------------|
 | `NARRATOR_SERVER` | API server URL |
 | `NARRATOR_APP_KEY` | API key |
-| `NARRATOR_TIMEOUT` | Request timeout in seconds (default: 30) |
+| `NARRATOR_TIMEOUT` | Timeout in seconds (default: 30) |
 
-## Project Structure
+## AI Agent Integration
 
-```
-src/narrator_ai/
-├── cli.py              # Main entry point
-├── client.py           # HTTP client (httpx + SSE)
-├── config.py           # Config management (~/.narrator-ai/config.yaml)
-├── output.py           # Output formatting (JSON / Rich table)
-├── commands/
-│   ├── config_cmd.py   # config init/show/set
-│   ├── user.py         # balance/login/keys
-│   ├── task.py         # task workflow commands (90+ narration templates)
-│   ├── file.py         # file upload/download/list
-│   ├── materials.py    # 93 pre-built movie materials
-│   ├── bgm.py          # 146 pre-built BGM tracks
-│   └── dubbing.py      # 63 pre-built dubbing voices
-└── models/
-    └── responses.py    # API response code constants
-```
-
-## For AI Agents
-
-See [SKILL.md](SKILL.md) for a comprehensive machine-readable guide including:
-- Complete data flow mappings (which output feeds into which input)
-- Full parameter references for each task type
-- Step-by-step workflow examples with exact commands
-- Error handling guidance
+See [narrator-ai-cli-skill](https://github.com/jieshuo-ai/narrator-ai-cli-skill) for the complete SKILL.md that teaches AI agents how to use this tool automatically.
 
 ## Contact
 
-Need an app_key or help getting started? Reach out:
+Need an API key or help? Reach out:
 
 - 📧 Email: merlinyang@gridltd.com
+- 💬 WeChat: Scan the QR code below
 
 ![Contact us](./imgs/contact.png)

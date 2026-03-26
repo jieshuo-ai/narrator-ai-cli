@@ -370,6 +370,7 @@ narrator-ai-cli task save-writing --json -d '{"task_id":"...", "file_id":"...", 
 narrator-ai-cli file list --json
 narrator-ai-cli file list --search "<keyword>" --json
 narrator-ai-cli file upload ./file.mp4 --json
+narrator-ai-cli file transfer --link "<url>" --json          # transfer by HTTP/Baidu/PikPak link
 narrator-ai-cli file info <file_id> --json
 narrator-ai-cli file download <file_id> --json
 narrator-ai-cli file storage --json
