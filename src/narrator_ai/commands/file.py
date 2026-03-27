@@ -181,7 +181,7 @@ def list_files(
         params["search"] = search
 
     try:
-        data = _client().get("/v2/files/user/filelist", params=params)
+        data = _client().get("/v2/files/list", params=params)
         if json_mode:
             print_json(data)
         else:

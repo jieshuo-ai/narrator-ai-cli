@@ -86,6 +86,7 @@ ASK: "电影素材：使用预置素材还是自己上传的文件？"
   ```bash
   narrator-ai-cli file list --json
   # or search: narrator-ai-cli file list --search "<keyword>" --json
+  # or transfer by link: narrator-ai-cli file transfer --link "<url>" --json
   ```
   User picks video and SRT files from their cloud storage.
 
