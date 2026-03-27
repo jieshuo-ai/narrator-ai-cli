@@ -95,6 +95,49 @@ def upload(
 
 
 @app.command()
+def transfer(
+    link: Optional[str] = typer.Option(None, help="File link (HTTP URL, Baidu Netdisk share link, or PikPak link)"),
+    upload_id: Optional[str] = typer.Option(None, help="Upload ID associated with the file being transferred"),
+    type: Optional[str] = typer.Option(None, help="Link type: url=HTTP, baidu=Baidu Netdisk, pikpak=PikPak (auto-detected if omitted)"),
+    json_mode: bool = typer.Option(False, "--json", help="Output as JSON"),
+):
+    """Transfer a remote file to cloud storage by link (HTTP, Baidu Netdisk, or PikPak).
+
+    Provide --link to start a transfer. --upload-id and --type are optional.
+    Returns upload_id, file_name, file_size, link_type, and error_info.
+    """
+    if not link and not upload_id:
+        print_error("Provide --link to start a transfer.")
+        raise typer.Exit(1)
+
+    payload: dict = {}
+    if link:
+        payload["link"] = link
+    if upload_id:
+        payload["upload_id"] = upload_id
+    if type:
+        payload["type"] = type
+
+    try:
+        data = _client().post("/v2/files/upload", json=payload)
+        if json_mode:
+            print_json(data)
+        else:
+            output = {
+                "upload_id": data.get("upload_id", ""),
+                "file_name": data.get("file_name", ""),
+                "file_size": _format_size(int(data.get("file_size", 0))),
+                "link_type": data.get("link_type", ""),
+            }
+            if data.get("error_info"):
+                output["error_info"] = data["error_info"]
+            print_dict(output, title="Transfer Status", json_mode=False)
+    except NarratorAPIError as e:
+        print_error(e.message, e.code)
+        raise typer.Exit(1)
+
+
+@app.command()
 def download(
     file_id: str = typer.Argument(..., help="File ID to get download URL for"),
     json_mode: bool = typer.Option(False, "--json", help="Output as JSON"),
