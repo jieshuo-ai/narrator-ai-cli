@@ -1,7 +1,31 @@
 ---
-name: narrator-ai
-description: "Create AI-narrated videos using the Narrator AI API. Use when the user asks to create narration scripts, compose videos, clone voices, search movies, manage files, or check task status. Supports two workflow paths: Standard (popular-learning -> generate-writing -> clip-data -> video-composing -> magic-video) and Fast (fast-writing -> fast-clip-data -> video-composing -> magic-video)."
-allowed-tools: Bash(narrator-ai-cli *)
+name: narrator-ai-cli
+version: "1.0.0"
+license: MIT
+description: >-
+  Create AI-narrated film/drama commentary videos via CLI.
+  Two workflow paths (Original & Adapted narration), 93 movies,
+  146 BGM tracks, 63 dubbing voices in 11 languages, 90+
+  narration templates. Use when creating narration videos,
+  film commentary, short drama dubbing, or video production.
+user-invocable: true
+tags:
+  - video-narration
+  - film-commentary
+  - ai-video
+  - short-drama
+  - content-creation
+  - dubbing
+  - tts
+  - video-production
+metadata:
+  openclaw:
+    emoji: "🎬"
+    requires:
+      bins:
+        - narrator-ai-cli
+      primaryEnv:
+        - NARRATOR_APP_KEY
 ---
 
 # narrator-ai-cli Skill
