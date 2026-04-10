@@ -96,7 +96,7 @@ class NarratorClient:
     def upload_file(self, upload_url: str, file_path: str, content_type: str = "application/octet-stream"):
         """Upload file to presigned URL."""
         with open(file_path, "rb") as f:
-            with httpx.Client(timeout=httpx.Timeout(self.timeout, read=600.0)) as c:
+            with httpx.Client(timeout=httpx.Timeout(connect=self.timeout, read=600.0, write=None, pool=self.timeout)) as c:
                 resp = c.put(
                     upload_url,
                     content=f,
