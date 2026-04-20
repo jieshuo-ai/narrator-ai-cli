@@ -3,9 +3,9 @@
   "owner": {
     "name": "GridLtd-ProductDev",
     "email": "merlinyang@gridltd.com",
-    "url": "https://github.com/jieshuo-ai"
+    "url": "https://github.com/GridLtd-ProductDev"
   },
-  "description": "AI video narration production toolkit — create film commentary videos with AI-generated scripts, dubbing, BGM, and visual templates. Supports 93 pre-built movies, 146 BGM tracks, 63 dubbing voices in 11 languages, and 90+ narration style templates.",
+  "description": "AI video narration production toolkit — create film commentary videos with AI-generated scripts, dubbing, BGM, and visual templates. Supports pre-built movies, BGM tracks, dubbing voices in 11 languages, and narration style templates.",
   "plugins": [
     {
       "name": "narrator-ai-cli-skill",
@@ -13,7 +13,7 @@
       "version": "1.0.0",
       "source": {
         "source": "github",
-        "repo": "jieshuo-ai/narrator-ai-cli-skill"
+        "repo": "GridLtd-ProductDev/narrator-ai-cli-skill"
       },
       "category": "media-production",
       "tags": [

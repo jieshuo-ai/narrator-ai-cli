@@ -1,6 +1,6 @@
 [project]
 name = "narrator-ai-cli"
-version = "0.1.0"
+version = "1.0.0"
 description = "CLI client for Narrator AI API - designed for AI Agents and developers"
 readme = "README.md"
 requires-python = ">=3.10"
