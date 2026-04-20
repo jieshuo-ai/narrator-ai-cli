@@ -36,12 +36,12 @@ Prerequisites: [Python 3.10+](https://www.python.org/downloads/) (check "Add to 
 
 **macOS / Linux**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py | python3
+curl -fsSL https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py | python3
 ```
 
 **Windows (CMD / PowerShell)**
 ```bat
-python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py').read())"
+python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py').read())"
 ```
 
 Verify:
@@ -75,7 +75,7 @@ For terminal usage, see Command Reference below.
 
 This tool works best with AI agents. Install the Skill so the agent knows how to use these commands.
 
-👉 **Install the Skill**: [narrator-ai-cli-skill](https://github.com/GridLtd-ProductDev/narrator-ai-cli-skill)
+👉 **Install the Skill**: [narrator-ai-cli-skill](https://github.com/NarratorAI-Studio/narrator-ai-cli-skill)
 
 ### Tested Platforms
 
@@ -254,7 +254,7 @@ narrator-ai-cli task query <task_id> --json
 
 ## AI Agent Integration
 
-See [narrator-ai-cli-skill](https://github.com/GridLtd-ProductDev/narrator-ai-cli-skill) for the complete SKILL.md that teaches AI agents how to use this tool automatically.
+See [narrator-ai-cli-skill](https://github.com/NarratorAI-Studio/narrator-ai-cli-skill) for the complete SKILL.md that teaches AI agents how to use this tool automatically.
 
 ## Contact
 

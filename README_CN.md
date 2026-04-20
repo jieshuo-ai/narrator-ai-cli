@@ -32,12 +32,12 @@ Narrator AI CLI 是 [AI 解说大师](https://ai.jieshuo.cn/) 的命令行工具
 
 **macOS / Linux**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py | python3
+curl -fsSL https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py | python3
 ```
 
 **Windows（CMD / PowerShell 均可）**
 ```bat
-python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py').read())"
+python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py').read())"
 ```
 
 验证安装：
@@ -71,7 +71,7 @@ narrator-ai-cli config set app_key 你的API_Key
 
 本工具搭配 AI Agent 使用效果最佳。安装 Skill 后，AI 就能理解如何使用这些命令。
 
-👉 **安装 Skill**：[narrator-ai-cli-skill](https://github.com/GridLtd-ProductDev/narrator-ai-cli-skill)
+👉 **安装 Skill**：[narrator-ai-cli-skill](https://github.com/NarratorAI-Studio/narrator-ai-cli-skill)
 
 ### 已测试的 Agent 平台
 
@@ -250,7 +250,7 @@ narrator-ai-cli task query <task_id> --json
 
 ## AI Agent 集成
 
-详见 [narrator-ai-cli-skill](https://github.com/GridLtd-ProductDev/narrator-ai-cli-skill)，包含完整的 SKILL.md 文件，让 AI Agent 自动理解如何使用本工具。
+详见 [narrator-ai-cli-skill](https://github.com/NarratorAI-Studio/narrator-ai-cli-skill)，包含完整的 SKILL.md 文件，让 AI Agent 自动理解如何使用本工具。
 
 ## 联系我们
 

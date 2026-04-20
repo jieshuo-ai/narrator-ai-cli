@@ -1,9 +1,9 @@
 {
   "name": "narrator-ai",
   "owner": {
-    "name": "GridLtd-ProductDev",
+    "name": "NarratorAI-Studio",
     "email": "merlinyang@gridltd.com",
-    "url": "https://github.com/GridLtd-ProductDev"
+    "url": "https://github.com/NarratorAI-Studio"
   },
   "description": "AI video narration production toolkit — create film commentary videos with AI-generated scripts, dubbing, BGM, and visual templates. Supports pre-built movies, BGM tracks, dubbing voices in 11 languages, and narration style templates.",
   "plugins": [
@@ -13,7 +13,7 @@
       "version": "1.0.0",
       "source": {
         "source": "github",
-        "repo": "GridLtd-ProductDev/narrator-ai-cli-skill"
+        "repo": "NarratorAI-Studio/narrator-ai-cli-skill"
       },
       "category": "media-production",
       "tags": [

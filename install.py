@@ -5,10 +5,10 @@ Works on Windows (CMD / PowerShell), macOS, and Linux — no shell-specific tool
 
 Usage:
   macOS / Linux:
-    curl -fsSL https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py | python3
+    curl -fsSL https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py | python3
 
   Windows (CMD or PowerShell):
-    python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/GridLtd-ProductDev/narrator-ai-cli/main/install.py').read())"
+    python -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/NarratorAI-Studio/narrator-ai-cli/main/install.py').read())"
 
 Prerequisites: Python 3.10+, Git
 """
@@ -23,7 +23,7 @@ from pathlib import Path
 IS_WINDOWS = sys.platform == "win32"
 
 # ── Config ────────────────────────────────────────────────────────────────────
-REPO        = "https://github.com/GridLtd-ProductDev/narrator-ai-cli.git"
+REPO        = "https://github.com/NarratorAI-Studio/narrator-ai-cli.git"
 HOME        = Path.home()
 INSTALL_DIR = Path(os.environ.get("NARRATOR_INSTALL_DIR", HOME / ".narrator-ai-cli"))
 VENV_DIR    = INSTALL_DIR / ".venv"
