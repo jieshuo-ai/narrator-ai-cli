@@ -29,8 +29,11 @@ def test_cli_version():
 
 
 def test_cli_no_args_shows_help():
-    """Running with no arguments should show help (no_args_is_help=True)."""
+    """Running with no arguments should show help (no_args_is_help=True).
+
+    Typer/Click returns exit code 2 for no_args_is_help — this is by design,
+    not an error. The important assertion is that help text is displayed.
+    """
     result = runner.invoke(app, [])
-    # Typer returns exit code 0 or 2 for no_args_is_help depending on version
     assert result.exit_code in (0, 2)
-    assert "usage" in result.output.lower() or "narrat" in result.output.lower()
+    assert "narrator" in result.output.lower() or "usage" in result.output.lower()
