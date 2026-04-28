@@ -63,8 +63,7 @@ jobs:
       - name: Audit dependencies
         run: |
           pip install "." --quiet
-          pip freeze | grep -iv "^narrator-ai-cli==" > /tmp/requirements.txt
-          pip-audit -r /tmp/requirements.txt --strict
+          pip-audit --desc --skip-editable
         env:
           PIP_INDEX_URL: https://pypi.org/simple
       - run: bandit -r src/narrator_ai -c pyproject.toml
