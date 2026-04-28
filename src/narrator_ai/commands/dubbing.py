@@ -155,7 +155,7 @@ def list_languages(
     json_mode: bool = typer.Option(False, "--json", help="Output as JSON"),
 ):
     """List available dubbing languages (dubbing_type values) with counts."""
-    lang_counts = {}
+    lang_counts: dict[str, int] = {}
     for d in DUBBING_LIST:
         lang_counts[d["type"]] = lang_counts.get(d["type"], 0) + 1
     items = [{"language": lang, "count": cnt} for lang, cnt in sorted(lang_counts.items())]
@@ -175,7 +175,7 @@ def list_tags(
     json_mode: bool = typer.Option(False, "--json", help="Output as JSON"),
 ):
     """List available voice tags (genre recommendations) with counts."""
-    tag_counts = {}
+    tag_counts: dict[str, int] = {}
     for d in DUBBING_LIST:
         tag_counts[d["tag"]] = tag_counts.get(d["tag"], 0) + 1
     items = [{"tag": t, "count": c} for t, c in sorted(tag_counts.items())]

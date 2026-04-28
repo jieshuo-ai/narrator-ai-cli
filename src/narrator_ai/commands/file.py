@@ -268,9 +268,10 @@ def delete_file(
         raise typer.Exit(1)
 
 
-def _format_size(size: int) -> str:
+def _format_size(size: int | float) -> str:
+    s = float(size)
     for unit in ("B", "KB", "MB", "GB"):
-        if size < 1024:
-            return f"{size:.1f} {unit}"
-        size /= 1024
-    return f"{size:.1f} TB"
+        if s < 1024:
+            return f"{s:.1f} {unit}"
+        s /= 1024
+    return f"{s:.1f} TB"

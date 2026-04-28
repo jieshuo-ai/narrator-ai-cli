@@ -278,7 +278,7 @@ def query(
     try:
         data = _client().get(f"/v2/task/commentary/query/{task_id}")
         if not json_mode and isinstance(data, dict):
-            status_code = data.get("status")
+            status_code: int = data.get("status", -1)
             data["status_name"] = TASK_STATUS_MAP.get(status_code, str(status_code))
         print_dict(data, title=f"Task {task_id}", json_mode=json_mode)
     except NarratorAPIError as e:
@@ -304,7 +304,7 @@ def list_tasks(
     json_mode: bool = typer.Option(False, "--json", help="Output as JSON (recommended for agents)"),
 ):
     """List tasks with pagination and optional filters."""
-    params = {"page": page, "limit": limit}
+    params: dict[str, int | str] = {"page": page, "limit": limit}
     if status is not None:
         params["status"] = status
     if task_type is not None:
@@ -319,7 +319,7 @@ def list_tasks(
         else:
             items = data.get("items", [])
             for item in items:
-                s = item.get("status")
+                s: int = item.get("status", -1)
                 item["status_name"] = TASK_STATUS_MAP.get(s, str(s))
             columns = [
                 ("task_id", "Task ID"),
