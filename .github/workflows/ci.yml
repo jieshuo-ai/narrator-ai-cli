@@ -60,10 +60,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pip-audit bandit
-      - name: Generate requirements and audit
+      - name: Audit dependencies
         run: |
           pip install "." --quiet
-          pip freeze --exclude-editable > /tmp/requirements.txt
+          pip freeze | grep -iv "^narrator-ai-cli==" > /tmp/requirements.txt
           pip-audit -r /tmp/requirements.txt --strict
         env:
           PIP_INDEX_URL: https://pypi.org/simple
