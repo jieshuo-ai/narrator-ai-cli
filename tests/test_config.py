@@ -32,8 +32,7 @@ def test_load_config_returns_defaults_when_no_file(tmp_path):
 def test_save_and_load_config(tmp_path):
     config_file = tmp_path / "config.yaml"
     config_dir = tmp_path
-    with patch("narrator_ai.config.CONFIG_FILE", config_file), \
-         patch("narrator_ai.config.CONFIG_DIR", config_dir):
+    with patch("narrator_ai.config.CONFIG_FILE", config_file), patch("narrator_ai.config.CONFIG_DIR", config_dir):
         save_config({"server": "https://test.example.com", "app_key": "test-key"})
         cfg = load_config()
     assert cfg["server"] == "https://test.example.com"
@@ -52,8 +51,7 @@ def test_get_server_strips_trailing_slash():
 
 
 def test_get_server_raises_when_not_configured(tmp_path):
-    with patch("narrator_ai.config.CONFIG_FILE", tmp_path / "nonexistent.yaml"), \
-         patch.dict(os.environ, {}, clear=True):
+    with patch("narrator_ai.config.CONFIG_FILE", tmp_path / "nonexistent.yaml"), patch.dict(os.environ, {}, clear=True):
         # DEFAULT_CONFIG has server set, so this won't raise
         server = get_server()
         assert server == DEFAULT_CONFIG["server"].rstrip("/")
@@ -65,10 +63,12 @@ def test_get_app_key_from_env():
 
 
 def test_get_app_key_raises_when_not_configured(tmp_path):
-    with patch("narrator_ai.config.CONFIG_FILE", tmp_path / "nonexistent.yaml"), \
-         patch.dict(os.environ, {}, clear=True):
-        with pytest.raises(SystemExit):
-            get_app_key()
+    with (
+        patch("narrator_ai.config.CONFIG_FILE", tmp_path / "nonexistent.yaml"),
+        patch.dict(os.environ, {}, clear=True),
+        pytest.raises(SystemExit),
+    ):
+        get_app_key()
 
 
 def test_get_timeout_from_env():
@@ -77,6 +77,5 @@ def test_get_timeout_from_env():
 
 
 def test_get_timeout_default():
-    with patch.dict(os.environ, {}, clear=True), \
-         patch("narrator_ai.config.CONFIG_FILE", Path("/nonexistent")):
+    with patch.dict(os.environ, {}, clear=True), patch("narrator_ai.config.CONFIG_FILE", Path("/nonexistent")):
         assert get_timeout() == 30

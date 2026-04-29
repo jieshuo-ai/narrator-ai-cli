@@ -1,10 +1,8 @@
 """Tests for narrator_ai.output module."""
 
 import json
-from io import StringIO
-from unittest.mock import patch
 
-from narrator_ai.output import print_json, print_error, print_success, print_info
+from narrator_ai.output import print_error, print_info, print_json, print_success
 
 
 def test_print_json_dict(capsys):
